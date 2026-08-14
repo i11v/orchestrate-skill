@@ -83,21 +83,23 @@ WORKFLOW_ID=$(printf '%s' "$HERDR_WORKSPACE_ID" | tr '[:upper:]' '[:lower:]')
 herdr agent rename "$HERDR_PANE_ID" "orchestrator-$WORKFLOW_ID"
 ```
 
-Keep the caller in the current checkout and focused pane. Let `ROLE_COUNT` be the number of roles in the selected mode. Create one right-hand role pane first:
+Keep the caller in the current checkout and focused pane. Treat all existing surrounding panes as occupied and out of scope. Create a pane only when an agent is ready to start; never preallocate panes for roles that may not be used.
+
+For the first subagent, create a new role column immediately to the right of the orchestrator's pane, even when the tab already has a multi-column layout—for example, when Hunk occupies the existing right column. Never reuse or split an unrelated existing pane:
 
 ```bash
 herdr pane split --current --direction right --ratio 0.5 --cwd "$PWD" --no-focus
 ```
 
-If `ROLE_COUNT` is `1`, stop splitting. If it is `2`, split the first role pane so both agents share the right column:
+For each additional subagent, create its pane immediately before starting it by splitting the tallest pane in the role column downward:
 
 ```bash
-herdr pane split --pane "$FIRST_ROLE_PANE_ID" --direction down --ratio 0.5 --cwd "$PWD" --no-focus
+herdr pane split --pane "$TALLEST_ROLE_PANE_ID" --direction down --ratio 0.5 --cwd "$PWD" --no-focus
 ```
 
-For larger future modes, keep the orchestrator's left half intact and repeatedly split the tallest role pane downward until there is one pane per role. If an oracle is needed later and has no pane, add one using the same rule and start the oracle there. Inspect `herdr pane layout` after each split and use `herdr pane resize` if needed to keep the role panes usable. Do not create another tab unless the user asks for it.
+Keep the orchestrator's pane intact. Inspect `herdr pane layout` after each split and use `herdr pane resize` if needed to keep the role panes usable. Do not create another tab unless the user asks for it.
 
-Read pane IDs from the responses and map them to roles in mode order. Start each agent under its derived `<role>-<workspace-id>` name with Codex and the model selected by runtime routing. Do not create branches, worktrees, commits, pushes, or pull requests unless the user separately authorizes them. Only the implementer may edit; no subagent may start other agents or perform Git publishing operations.
+Read the new pane ID from the split response and assign it directly to the agent being started. Start the agent under its derived `<role>-<workspace-id>` name with Codex and the model selected by runtime routing. Do not create branches, worktrees, commits, pushes, or pull requests unless the user separately authorizes them. Only the implementer may edit; no subagent may start other agents or perform Git publishing operations.
 
 ## Implement
 
