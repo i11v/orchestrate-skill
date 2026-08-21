@@ -12,10 +12,12 @@ Orchestrate expects to run inside an active Herdr workspace with the Herdr skill
 
 ## Roles
 
-- **Implementer** — makes the requested changes, validates the result, addresses accepted review findings, and provides evidence-backed pushback when an instruction appears incorrect or unsafe.
-- **Reviewer** — independently reviews the task changes without editing and reports actionable findings supported by file and line evidence.
-- **Oracle** — gives read-only advice on hard, bounded questions and arbitrates material disagreements that cannot be resolved from requirements, repository evidence, or tests.
-- **Log monitor** — watches a specified source until a defined stop condition and reports meaningful changes without performing remediation.
+- **[Implementer](references/roles/implementer.md)** — makes the requested changes, validates the result, addresses accepted review findings, and provides evidence-backed pushback when an instruction appears incorrect or unsafe.
+- **[Reviewer](references/roles/reviewer.md)** — independently reviews the task changes without editing and reports actionable findings supported by file and line evidence.
+- **[Oracle](references/roles/oracle.md)** — gives read-only advice on hard, bounded questions and arbitrates material disagreements that cannot be resolved from requirements, repository evidence, or tests.
+- **[Log monitor](references/roles/log-monitor.md)** — watches a specified source until a defined stop condition and reports meaningful changes without performing remediation.
+
+Each role has a separate contract containing its responsibilities, model routing, briefing requirements, permissions, and stop conditions. The root skill loads only the contracts required by the selected workflow.
 
 ## Workflows
 
