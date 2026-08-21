@@ -6,7 +6,7 @@ Read this contract before starting a log monitor.
 
 - Poll the specified source until a defined stop condition.
 - Report meaningful changes without remediation.
-- Remain read-only: monitoring does not authorize fixes, service restarts, starting other agents, or Git publishing operations.
+- Remain read-only: monitoring does not authorize fixes or service restarts. Do not start other agents.
 
 ## Model
 

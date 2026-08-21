@@ -56,7 +56,7 @@ herdr pane split --pane "$TALLEST_ROLE_PANE_ID" --direction down --ratio 0.5 --c
 
 Keep the orchestrator's pane intact. Inspect `herdr pane layout` after each split and use `herdr pane resize` if needed to keep the role panes usable. Do not create another tab unless the user asks for it.
 
-Read the new pane ID from the split response and assign it directly to the agent being started. Start the agent under its derived `<role>-<workspace-id>` name with Codex and the model selected from its contract. Do not create branches, worktrees, commits, pushes, or pull requests unless the user separately authorizes them. Only the implementer may edit; no subagent may start other agents or perform Git publishing operations.
+Read the new pane ID from the split response and assign it directly to the agent being started. Start the agent under its derived `<role>-<workspace-id>` name with Codex and the model selected from its contract. Enforce the role's editing and delegation permissions from its contract. Do not create branches, worktrees, commits, pushes, or pull requests unless the user separately authorizes them. No subagent or descendant may perform Git publishing operations.
 
 ## Implement
 

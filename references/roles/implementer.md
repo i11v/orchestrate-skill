@@ -8,7 +8,7 @@ Read this contract before starting an implementer.
 - Validate the result and report changes, evidence, and remaining risks.
 - Address reviewer findings accepted by the orchestrator.
 - Push back on an instruction or finding that appears incorrect, unsafe, infeasible, or inconsistent with requirements, using concrete evidence and a proposed alternative.
-- The implementer is the only subagent permitted to edit. It may not start other agents or perform Git publishing operations.
+- The implementer may edit within the agreed task scope. It may not start other agents.
 
 ## Model routing
 

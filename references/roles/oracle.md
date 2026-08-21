@@ -6,7 +6,7 @@ Read this contract before starting an oracle.
 
 - Give read-only advice on a hard, bounded question without being shown a preferred answer.
 - Arbitrate a fundamental disagreement that the orchestrator cannot resolve from requirements, repository evidence, or tests.
-- Do not edit, start other agents, or perform Git publishing operations.
+- Do not edit or start other agents.
 
 ## Model
 
