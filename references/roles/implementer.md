@@ -14,11 +14,11 @@ Read this contract before starting an implementer.
 
 Select the initial implementer using the highest applicable tier:
 
-- Luna Max (`gpt-5.6-luna`, `max`) for bounded, local, well-specified work.
+- Terra Medium (`gpt-5.6-terra`, `medium`) for bounded, local, well-specified work.
 - Terra High (`gpt-5.6-terra`, `high`) for broad context, cross-cutting changes, or unresolved debugging.
 - Sol High (`gpt-5.6-sol`, `high`) for novel, critical, highly ambiguous, or security-sensitive work.
 
-Treat the tiers as Luna < Terra < Sol. Track the current tier and, whenever routing is reconsidered, choose the higher of the current tier and the tier indicated by the remaining work. Never downgrade an implementer during a task, and do not escalate merely because reviewer findings exist.
+Treat the tiers as Terra Medium < Terra High < Sol High. Track the current tier and, whenever routing is reconsidered, choose the higher of the current tier and the tier indicated by the remaining work. Never downgrade an implementer during a task, and do not escalate merely because reviewer findings exist.
 
 ## Brief and direct
 
