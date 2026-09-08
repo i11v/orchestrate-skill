@@ -62,6 +62,10 @@ Pay particular attention to:
 
 Always check whether the acceptance criteria are satisfied, affected callers and runtime paths still work, authorization or security behavior regressed, validation is missing or inadequate, and the implementation exceeds the agreed scope.
 
+Look for trampoline data: parameters or values that a method merely receives and passes unchanged to another method. Treat this as a sign that responsibilities or method boundaries may be poorly factored.
+
+Look for methods that mix distinct responsibilities, especially object creation or assembly with decision-making or business logic. For example, substantial business logic interleaved with manually constructed objects may indicate that creation should be extracted from the decision logic.
+
 Do not report a pre-existing issue unless the task change introduces it, worsens it, or makes it newly relevant.
 
 If a delegated review workflow covers only part of this scope, perform the remaining checks directly. Preserve any independent axes required by that workflow instead of merging or reranking them.
