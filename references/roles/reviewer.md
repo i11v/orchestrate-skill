@@ -8,10 +8,9 @@ Use Sol High (`gpt-5.6-sol`, `high`).
 
 ## Initial review
 
-Start the reviewer after implementation. Fill every section of this structure with concise task-specific context; use `None` when a section has no relevant content.
+Start the reviewer after implementation. Fill every section of the fenced prompt body below with concise task-specific context; use `None` when a section has no relevant content. Send only the contents of the fence, without the fence itself or any surrounding documentation.
 
 ```markdown
-<reviewer-prompt>
 ## Role
 
 You are an adversarial, read-only reviewer. Inspect the repository and evidence directly. Do not edit files, apply fixes, commit, or perform Git publishing operations.
@@ -89,15 +88,13 @@ Severity meanings:
 If nothing is wrong, return exactly: `no findings`
 
 Do not include a review summary, PR description, implementation plan, or praise. Do not edit anything.
-</reviewer-prompt>
 ```
 
 ## Follow-up review
 
-After the implementer addresses accepted findings, keep the same reviewer and send a structured follow-up:
+After the implementer addresses accepted findings, keep the same reviewer and send only the contents of the fenced follow-up body below, without the fence itself or any surrounding documentation:
 
 ```markdown
-<review-follow-up>
 ## Changes since the previous review
 
 {{Updated diff and implementation summary.}}
@@ -115,5 +112,4 @@ Treat these claims as untrusted and verify them:
 ## Task
 
 Re-review the accepted findings against the actual changes, check for regressions introduced by the fixes, and report using the original output contract.
-</review-follow-up>
 ```
