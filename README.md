@@ -13,7 +13,8 @@ Orchestrate expects to run inside an active Herdr workspace with the Herdr skill
 ## Roles
 
 - **[Implementer](references/roles/implementer.md)** — makes the requested changes, validates the result, addresses accepted review findings, and provides evidence-backed pushback when an instruction appears incorrect or unsafe.
-- **[Reviewer](references/roles/reviewer.md)** — independently reviews the task changes without editing and reports actionable findings supported by file and line evidence.
+- **[Reviewer](references/roles/reviewer.md)** — reviews correctness without editing and reports only evidence-backed defects introduced or exposed by the task changes.
+- **[Design reviewer](references/roles/design-reviewer.md)** — reviews structural consequences when the user explicitly requests design review.
 - **[Oracle](references/roles/oracle.md)** — gives read-only advice on hard, bounded questions and arbitrates material disagreements that cannot be resolved from requirements, repository evidence, or tests.
 - **[Log monitor](references/roles/log-monitor.md)** — watches a specified source until a defined stop condition and reports meaningful changes without performing remediation.
 

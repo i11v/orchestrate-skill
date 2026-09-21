@@ -13,6 +13,7 @@ Before starting a role, read its complete contract. Load only contracts needed b
 
 - [Implementer](references/roles/implementer.md)
 - [Reviewer](references/roles/reviewer.md)
+- [Design reviewer](references/roles/design-reviewer.md)
 - [Oracle](references/roles/oracle.md)
 - [Log monitor](references/roles/log-monitor.md)
 
@@ -29,11 +30,13 @@ The contracts define role-specific model routing, responsibilities, permissions,
 
 Use a mode named in the prompt. Otherwise infer an unambiguous match and default implementation work to `implement-review`. The oracle may be added on demand to any implementation mode when a fundamental disagreement arises. To add a mode, add a row naming roles listed above and state its ordering and stop condition.
 
+Start a design reviewer only when the user explicitly requests design review.
+
 ## Set up
 
 Inspect the working tree first so existing changes can be distinguished from task changes. Preserve them and tell all agents what is out of scope.
 
-Name every agent as `<role>-<workspace-id>`, using its canonical role (`orchestrator`, `implementer`, `reviewer`, `oracle`, or `log-monitor`) and the lowercase `HERDR_WORKSPACE_ID`. Derive these names mechanically and never use task, feature, model, or tool labels. Reuse the same names throughout the workflow, including after model upgrades.
+Name every agent as `<role>-<workspace-id>`, using its canonical role (`orchestrator`, `implementer`, `reviewer`, `design-reviewer`, `oracle`, or `log-monitor`) and the lowercase `HERDR_WORKSPACE_ID`. Derive these names mechanically and never use task, feature, model, or tool labels. Reuse the same names throughout the workflow, including after model upgrades.
 
 ```bash
 WORKFLOW_ID=$(printf '%s' "$HERDR_WORKSPACE_ID" | tr '[:upper:]' '[:lower:]')
@@ -68,9 +71,16 @@ In `implement-oracle`, start and brief the oracle according to its contract when
 
 In `implement-review`, start and brief the reviewer according to its contract after implementation.
 
-Judge the findings yourself rather than relaying them mechanically. Accept findings that identify a supported defect, requirement gap, regression or security risk, or necessary missing validation. Reject baseline issues, unsupported speculation, duplicates, subjective preferences, and out-of-scope enhancements.
+Reviewer findings are hypotheses. For each finding:
 
-Send accepted findings to the implementer and consider any evidence-backed pushback. Recheck the relevant requirements, code, and tests, and revise your decision when the objection is supported.
+- Check against the task goal, acceptance criteria, and repository contracts.
+- Verify it with code, tests, runtime behavior, documentation, or history.
+- Confirm the change introduces, worsens, or exposes it.
+- Weigh likelihood, impact, fix cost, and scope.
+
+Accept only evidence-backed, proportionate fixes. Reject assumptions, speculation, preferences, duplicates, baseline issues, and out-of-scope work.
+
+Send accepted findings to the implementer. Evaluate evidence-backed pushback yourself.
 
 If a material disagreement about correctness, requirements, architecture, security, or feasibility remains unresolved, read the oracle contract if it is not already loaded, then consult the oracle before directing further work. Judge its recommendation and decide what happens next; ask the user if the issue remains unresolved or would change scope.
 
